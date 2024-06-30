@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Adventure_Quest_RPG
 {
+
     public class Monster : Character
 
     {
@@ -16,5 +17,6 @@ namespace Adventure_Quest_RPG
         {
         }
 
+ 
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Adventure_Quest_RPG
 {
+
    public abstract class Character
     {
         public virtual string Name { get; set; }
@@ -27,6 +28,5 @@ namespace Adventure_Quest_RPG
             AttackPower = 30;
             Defense = 30;
         }
-
     }
 }
