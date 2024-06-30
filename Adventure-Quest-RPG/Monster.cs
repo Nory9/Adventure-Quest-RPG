@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Adventure_Quest_RPG
 {
-    internal class Monster
+
+    public class Monster : Character
+
     {
+        public Monster(string name, int attackPower, int health, int defence) : base(name, health, attackPower, defence)
+        {
+        }
+        public Monster() : base()
+        {
+        }
+
+ 
     }
 }
