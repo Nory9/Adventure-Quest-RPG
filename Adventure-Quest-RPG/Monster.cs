@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Adventure_Quest_RPG
 {
 
-    public class Monster : Character
+    public abstract class Monster : Character
 
     {
         public Monster(string name, int attackPower, int health, int defence) : base(name, health, attackPower, defence)
@@ -17,6 +17,8 @@ namespace Adventure_Quest_RPG
         {
         }
 
- 
+        public abstract void Attack(Player player);
+
+
     }
 }

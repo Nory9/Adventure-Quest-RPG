@@ -4,8 +4,23 @@
     {
         static void Main(string[] args)
         {
-           //  Player player = new Player("user", 20, 25, 30);  
-           // Monster monster = new Monster("dragon", 200, 600, 500);
+            try
+            {
+                Player player = new Player("Muath Mhawich", 30, 50, 20);
+                Monster dragon = new Dragon("dragon", 40, 60, 20);
+
+                BattleSystem.StartBattle(player, dragon);
+
+                if (player.Health > 0)
+                {
+                    Console.WriteLine("Adventure complete!");
+                }
+
+            }
+            catch (Exception ex) { 
+             Console.WriteLine(ex.ToString());
+            }
+           
 
         }
     }
