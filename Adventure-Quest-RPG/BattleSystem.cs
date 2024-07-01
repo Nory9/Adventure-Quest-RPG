@@ -30,7 +30,6 @@ namespace Adventure_Quest_RPG
             {
                 Console.WriteLine("Player's turn:");
                 Attack(player, enemy);
-                Attack(player, enemy);
 
                 if (enemy.Health == 0)
                 {
