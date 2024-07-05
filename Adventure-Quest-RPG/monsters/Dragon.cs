@@ -18,9 +18,5 @@ namespace Adventure_Quest_RPG.monsters
 
         }
         
-        //public override void Attack(Player player)
-        //{
-        //    BattleSystem.Attack(this, player);
-        //}
     }
 }

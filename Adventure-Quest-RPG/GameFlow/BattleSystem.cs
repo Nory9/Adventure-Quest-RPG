@@ -15,7 +15,7 @@ namespace Adventure_Quest_RPG.GameFlow
             int damage = attacker.AttackPower - target.Defense;
             if (damage < 0)
             {
-                damage = target.Defense;
+                damage = 2;
 
             }
 
@@ -23,7 +23,7 @@ namespace Adventure_Quest_RPG.GameFlow
             target.Health -= damage;
             if (target.Health < 0) target.Health = 0;
 
-            Console.WriteLine($"{attacker.Name} attacks {target.Name} for {damage} damage. {target.Name} now has {target.Health} health.");
+            Console.WriteLine($"{attacker.Name} attacks {target.Name} for {damage} damage. {target.Name} now has {target.Health} health.\n");
             return target.Health;
         }
 
@@ -33,23 +33,23 @@ namespace Adventure_Quest_RPG.GameFlow
             int HEALTH = enemy.Health;
             while (player.Health > 0 && enemy.Health > 0)
             {
-                Console.WriteLine("Player's turn:");
+                Console.WriteLine($"{player.Name}'s turn:\n");
                 Attack(player, enemy);
 
                 if (enemy.Health == 0)
                 {
-                    Console.WriteLine("Victory! The enemy has been defeated.");
-                    Console.WriteLine($" {enemy.Name}s health is{enemy.Health}");
+                    Console.WriteLine($"Victory! The {enemy.Name} has been defeated.\n");
+                    Console.WriteLine($"{enemy.Name}'s health is {enemy.Health}\n");
                     result = "Victory!";
                     break;
                 }
-                Console.WriteLine("Enemy's turn:");
+                Console.WriteLine($"{enemy.Name}'s turn:\n");
                 Attack(enemy, player);
 
                 if (player.Health == 0)
                 {
-                    Console.WriteLine("Defeat! The player has been defeated.");
-                    Console.WriteLine($" {player.Name}s health is{player.Health}");
+                    Console.WriteLine($"Defeat! {player.Name} has been defeated.\n");
+                    Console.WriteLine($"{player.Name}'s health is {player.Health}\n");
                     result = "Defeat!";
                     break;
                 }

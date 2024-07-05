@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Adventure_Quest_RPG.monsters
 {
-    internal class Werewolf : Monster
+    internal class Vampire : Monster
     {
-        public Werewolf(string Name="Werewolf", int Health=70, int AttackPower=70, int Defense=80) : base(Name, Health, AttackPower, Defense)
+        public Vampire(string Name = "Vampire", int Health = 40, int AttackPower = 30, int Defense = 20) : base(Name, Health, AttackPower, Defense)
         {
             this.Name = Name;
             this.Health = Health;
@@ -16,4 +16,5 @@ namespace Adventure_Quest_RPG.monsters
             this.Defense = Defense;
         }
     }
+
 }
