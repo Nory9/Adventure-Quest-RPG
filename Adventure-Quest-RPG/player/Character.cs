@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adventure_Quest_RPG
+namespace Adventure_Quest_RPG.player
 {
 
-   public abstract class Character
+    public abstract class Character
     {
         public virtual string Name { get; set; }
         public virtual int Health { get; set; }

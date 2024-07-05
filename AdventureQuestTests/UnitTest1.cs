@@ -1,4 +1,6 @@
-using Adventure_Quest_RPG;
+using Adventure_Quest_RPG.GameFlow;
+using Adventure_Quest_RPG.monsters;
+using Adventure_Quest_RPG.Player;
 
 namespace AdventureQuestTests
 {
