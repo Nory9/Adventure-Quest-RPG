@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Adventure_Quest_RPG.monsters;
+using Adventure_Quest_RPG.player;
 
-namespace Adventure_Quest_RPG
+namespace Adventure_Quest_RPG.GameFlow
 {
-    public static class BattleSystem
+    public  class BattleSystem
     {
-        public static int Attack(Character attacker, Character target)
-        {    
+        public  int Attack(dynamic attacker, dynamic target)
+        {
             int damage = attacker.AttackPower - target.Defense;
-            if (damage < 0) { damage = 2;
-                
+            if (damage < 0)
+            {
+                damage = target.Defense;
+
             }
 
 
@@ -23,9 +27,10 @@ namespace Adventure_Quest_RPG
             return target.Health;
         }
 
-        public static String StartBattle(Player player, Monster enemy)
+        public  string StartBattle(Player player, Monster enemy)
         {
-            String result = "";
+            string result = "";
+            int HEALTH = enemy.Health;
             while (player.Health > 0 && enemy.Health > 0)
             {
                 Console.WriteLine("Player's turn:");
@@ -34,20 +39,22 @@ namespace Adventure_Quest_RPG
                 if (enemy.Health == 0)
                 {
                     Console.WriteLine("Victory! The enemy has been defeated.");
+                    Console.WriteLine($" {enemy.Name}s health is{enemy.Health}");
                     result = "Victory!";
                     break;
                 }
-
                 Console.WriteLine("Enemy's turn:");
-                enemy.Attack(player);
+                Attack(enemy, player);
 
                 if (player.Health == 0)
                 {
                     Console.WriteLine("Defeat! The player has been defeated.");
+                    Console.WriteLine($" {player.Name}s health is{player.Health}");
                     result = "Defeat!";
                     break;
                 }
             }
+            enemy.Health = HEALTH;
             return result;
         }
     }
