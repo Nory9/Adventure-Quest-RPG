@@ -7,6 +7,7 @@ Welcome to the Adventure Quest RPG repository! This project is an adventure game
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
+- [Features](#features)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -36,21 +37,32 @@ Run the project through Visual Studio by selecting the appropriate startup proje
 
 The project consists of the following key folders and files:
 
-- **Adventure-Quest-RPG/**: Main project folder containing the game code.
-  - ```Program.cs```: Contains the entry point (Main method) for starting the game.
-  - ```BattleSystem.cs```: Manages game flow, battle logic (Attack, StartBattle), and battle outcomes.
-  - ```Character.cs```: Represents a character with properties (Name, Health, AttackPower, Defense) and a method (CalcDamage) to calculate damage.
-  - ```Player.cs```: Represents a player with predefined attributes.
-  - ```Monster.cs```: Represents a monster with predefined attributes.
-  
-- **AdventureQuestTests/**: Contains unit tests for the project.
-  - ```RPG_GameTest```: Contains unit tests to verify game logic using Xunit.
-  
-- **.gitattributes**: Defines attributes for pathnames.
-- **.gitignore**: Specifies files to be ignored by Git.
-- **Adventure-Quest-RPG.sln**: Solution file for Visual Studio.
-- **LICENSE.txt**: License file for the project.
-- **README.md**: This readme file.
+
+- **AdventureQuestRPGTests/**: Contains unit tests for the project.
+  - `RPG_GameTest`: Contains unit tests to verify game logic using Xunit.
+
+- **AdventureQuestRPG/**: Main project folder containing the game code.
+  - `Program.cs`: Contains the entry point (Main method) for starting the game.
+  - `Characters.cs`: Contains the Character, Player, Monster, BossMonster, and various monster classes (Vampire, Goblin, Dragon, etc.).
+  - `BattleSystem.cs`: Manages game flow, battle logic (Attack, StartBattle), and battle outcomes.
+  - `Adventure.cs`: Manages the game loop, player actions, and encounters.
+  - `Inventory.cs`: Manages the player's inventory, including adding and displaying items.
+  - `Items.cs`: Contains the Item base class and derived classes for specific item types (Weapon, Armor, Potion).
+  - `IBattleStates.cs`: Defines the IBattleStates interface representing common battle-related properties.
+
+## Features
+
+### Basic Features
+- **Battle System**: Engage in battles with various monsters.
+- **Exploration**: Discover new locations to explore.
+- **Inventory System**: Collect and use items such as weapons, armor, and potions.
+
+### Additional Features
+- **Skill System**: Players can learn and use different skills or abilities as they level up.
+  - Define a set of skills with various effects (e.g., healing, special attacks).
+  - Implement a skill tree for the player to choose from.
+- **Boss Monster**: Includes powerful boss monsters with high stats to challenge players.
+- **Item Drops**: After defeating a monster, there is a chance to receive item drops that can be added to the player's inventory.
 
 ## Contributing
 
