@@ -14,7 +14,6 @@ Welcome to the Adventure Quest RPG repository! This project is an adventure game
 
 This console application simulates an RPG game where a player battles against monsters. The game demonstrates basic object-oriented programming principles, including inheritance, polymorphism, and encapsulation.
 
-
 ## Installation
 
 To set up this project locally, follow these steps:
@@ -39,15 +38,14 @@ The project consists of the following key folders and files:
 
 - **Adventure-Quest-RPG/**: Main project folder containing the game code.
   - ```Program.cs```: Contains the entry point (Main method) for starting the game.
-  
   - ```BattleSystem.cs```: Manages game flow, battle logic (Attack, StartBattle), and battle outcomes.
   - ```Character.cs```: Represents a character with properties (Name, Health, AttackPower, Defense) and a method (CalcDamage) to calculate damage.
   - ```Player.cs```: Represents a player with predefined attributes.
   - ```Monster.cs```: Represents a monster with predefined attributes.
-
-
+  
 - **AdventureQuestTests/**: Contains unit tests for the project.
-   - ```RPG_GameTest```: Contains unit tests to verify game logic using Xunit.
+  - ```RPG_GameTest```: Contains unit tests to verify game logic using Xunit.
+  
 - **.gitattributes**: Defines attributes for pathnames.
 - **.gitignore**: Specifies files to be ignored by Git.
 - **Adventure-Quest-RPG.sln**: Solution file for Visual Studio.

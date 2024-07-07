@@ -1,4 +1,5 @@
-﻿using Adventure_Quest_RPG.monsters;
+﻿using Adventure_Quest_RPG.Inventory_System;
+using Adventure_Quest_RPG.monsters;
 using Adventure_Quest_RPG.player;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,30 @@ namespace Adventure_Quest_RPG.GameFlow
 {
     public class Adventure
     {
-        BossMonster bossMonster = new BossMonster();
-        phoenix Phoenix = new phoenix();
-        Werewolf werewolf = new Werewolf();
-        Monster dragon = new Dragon();
+        //BossMonster bossMonster = new BossMonster();
+        //phoenix Phoenix = new phoenix();
+        //Werewolf werewolf = new Werewolf();
+        //Monster dragon = new Dragon();
         BattleSystem battle = new BattleSystem();
-        Vampire vampire = new Vampire();
-        Goblin goblin = new Goblin();
+        //Vampire vampire = new Vampire();
+        //Goblin goblin = new Goblin();
         public object chooseMonster() { 
         List<Monster> list = new List<Monster>();
-            list.Add(bossMonster);
-            list.Add(dragon);
-            list.Add(werewolf);
-            list.Add(goblin);
-            list.Add(Phoenix);
-            list.Add(dragon);
-            list.Add(vampire);
-            list.Add(goblin);
+            list.Add(new phoenix());
+            list.Add(new Werewolf());
+            list.Add(new Dragon());
+            list.Add(new Vampire());
+            list.Add(new Goblin());
+            list.Add(new BossMonster());
+            list.Add(new Vampire());
+            list.Add(new phoenix());
             Random random = new Random();
             int res=random.Next(0,4);
             return list[res];
         }
 
         public string chooseLocation(int index) {
+            
             string[] locations = { "forest", "cave", "town", "castle", "village" };
             
             return locations[index-1];
@@ -58,6 +60,7 @@ namespace Adventure_Quest_RPG.GameFlow
         }
 
         public string locationDiscevery() {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("choose a location:\n [1] forest \n [2] cave \n [3] town\n [4] castle\n [5] village");
             string input=Console.ReadLine();
             bool inputBool= Int32.TryParse(input, out int choice1);
@@ -67,13 +70,20 @@ namespace Adventure_Quest_RPG.GameFlow
         }
         public void round(Player player) {
 
-                dynamic monster = chooseMonster();
-                Console.WriteLine($"\n\nyou are facing {monster.Name}\n");
-               string res= battle.StartBattle(player, monster);
+            dynamic monster = chooseMonster();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"\n\nyou are facing {monster.Name}\n");
+            string res = battle.StartBattle(player, monster);
+            
+            monster = chooseMonster();
+            if (res == "Victory!")
+            {   
+                player.LevelUp();
+            }
 
         }
         public int action() {
-            Console.WriteLine("\nplease choose an action:\n [1] Discover a new location \n [2] Attack a monster\n [3] Exit the game");
+            Console.WriteLine("\nplease choose an action:\n [1] Discover a new location \n [2] Attack a monster\n [3] Use an item\n [4] Exit the game");
             string userChoice = Console.ReadLine();
             bool test_choice = Int32.TryParse(userChoice, out int choice);
             int input = validInput(test_choice, choice);
@@ -85,23 +95,33 @@ namespace Adventure_Quest_RPG.GameFlow
                 case 1:
                     {
                         string location = locationDiscevery();
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"\nyou are now in {location}");
                         round(player);
                     }
                     break;
                 case 2:
                     {
+                        Console.ForegroundColor = ConsoleColor.DarkYellow ;
+                        Console.WriteLine("the  Round started!!!!");
                         round(player);
                     }
                     break;
                 case 3:
                     {
-                    Environment.Exit(0);
+                        player.choiseItem(player);
+                    }
+                    break;
+                case 4:
+                    {
+                        Environment.Exit(0);
                     }
                     break;
             }
 
         }
+
+        
         public bool nameValidation(string name) {
             bool pares=Int32.TryParse(name, out int choice);    
             if(pares==true||name=="")
@@ -109,21 +129,34 @@ namespace Adventure_Quest_RPG.GameFlow
             else return true;
         }
         public void gameFlow() {
-             Console.WriteLine("wellcome to our game!\n Enter your name:");
-             string name=Console.ReadLine();
-            bool validName=nameValidation(name);
-            while (!validName) {
-                Console.WriteLine("the name you entered is invalid try again");
-                 name = Console.ReadLine();
-                 validName = nameValidation(name);
+            Console.WriteLine("Welcome to our game!\nEnter your name:");
+            string name = Console.ReadLine();
+            bool validName = nameValidation(name);
+            while (!validName)
+            {
+                Console.WriteLine("The name you entered is invalid, try again.");
+                name = Console.ReadLine();
+                validName = nameValidation(name);
             }
-             Player player= new Player(name,120,55,76);
+            Player player = new Player(name, 120, 55, 76);
             while (player.Health > 0)
             {
                 int input = action();
                 switchloop(input, player);
             }
-            Console.WriteLine("\nGame Over!\nGood luck next time");
+            Console.WriteLine("\nGame Over!\nGood luck next time.");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nDo you want to play again? y / n");
+            string replay = Console.ReadLine();
+            if (replay == "y")
+            {
+                gameFlow();
+            }
+            else if(replay =="n")
+            {
+                switchloop(4, player);
+            }
+
         }
 
         }
