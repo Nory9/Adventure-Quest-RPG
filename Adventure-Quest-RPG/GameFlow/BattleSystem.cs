@@ -25,7 +25,7 @@ namespace Adventure_Quest_RPG.GameFlow
 
             target.Health -= damage;
             if (target.Health < 0) target.Health = 0;
-
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"{attacker.Name} attacks {target.Name} for {damage} damage. {target.Name} now has {target.Health} health.\n");
             return target.Health;
         }
@@ -42,9 +42,10 @@ namespace Adventure_Quest_RPG.GameFlow
 
                 if (choice == "1")
                 {
-                    enemy.Health -= player.AttackPower;
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                    Console.WriteLine($"{player.Name} attacked {enemy.Name} for {player.AttackPower} damage . enemy health :{enemy.Health}");
+                    //enemy.Health -= player.AttackPower;
+                    Attack(player, enemy);
+                  
+                    //Console.WriteLine($"{player.Name} attacked {enemy.Name} for {player.AttackPower} damage . enemy health :{enemy.Health}");
                 }
                 else if (choice == "2")
                 {
@@ -61,9 +62,9 @@ namespace Adventure_Quest_RPG.GameFlow
                     return "Victory!";
                 }
 
-                player.Health -= enemy.AttackPower;
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"{enemy.Name} attacked {player.Name} for {enemy.AttackPower} damage. Your health :{player.Health}");
+                Attack(enemy, player);
+                
+                //Console.WriteLine($"{enemy.Name} attacked {player.Name} for {enemy.AttackPower} damage. Your health :{player.Health}");
             }
             return "Defeat!";
         }

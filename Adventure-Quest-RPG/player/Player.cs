@@ -99,13 +99,16 @@ namespace Adventure_Quest_RPG.player
             {
                 Health += skill.EffectValue;
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
-                Console.WriteLine($"{Name} used {skill.Name} and healed for {skill.EffectValue} health.");
+                Console.WriteLine($"{Name} used {skill.Name} and healed for {skill.EffectValue} health. your health now :{Health}");
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
                 target.Health -= skill.EffectValue;
-                Console.WriteLine($"{Name} used {skill.Name} and dealt {skill.EffectValue} damage to {target.Name}.");
+                if (target.Health < 0)
+                    target.Health = 0;
+                else
+                Console.WriteLine($"{Name} used {skill.Name} and dealt {skill.EffectValue} damage to {target.Name}. enemy Helth: {target.Health}");
             }
         }
 
