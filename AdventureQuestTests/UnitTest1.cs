@@ -53,26 +53,22 @@ namespace AdventureQuestTests
 
 
         [Fact]
-        public void TestEncounterBossMonster()
+        public void TestBossMonster()
         {
             Adventure adventure = new Adventure();
             adventure = new Adventure();
-            bool bossMonsterEncountered = false;
-
-            //Simulate encounters until the boss monster is found
+            bool bossMonster = false;
             for (int i = 0; i < 100; i++)
             {
                 Monster monster = adventure.chooseMonster();
 
                 if (monster is BossMonster)
                 {
-                    bossMonsterEncountered = true;
+                    bossMonster = true;
                     break;
                 }
             }
-
-            // Check if the boss monster was encountered within 100 attempts
-            Assert.True(bossMonsterEncountered);
+            Assert.True(bossMonster);
         }
 
 
