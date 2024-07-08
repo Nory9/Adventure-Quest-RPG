@@ -11,14 +11,8 @@ namespace Adventure_Quest_RPG.GameFlow
 {
     public class Adventure
     {
-        //BossMonster bossMonster = new BossMonster();
-        //phoenix Phoenix = new phoenix();
-        //Werewolf werewolf = new Werewolf();
-        //Monster dragon = new Dragon();
         BattleSystem battle = new BattleSystem();
-        //Vampire vampire = new Vampire();
-        //Goblin goblin = new Goblin();
-        public object chooseMonster() { 
+        public Monster chooseMonster() { 
         List<Monster> list = new List<Monster>();
             list.Add(new phoenix());
             list.Add(new Werewolf());
@@ -29,14 +23,14 @@ namespace Adventure_Quest_RPG.GameFlow
             list.Add(new Vampire());
             list.Add(new phoenix());
             Random random = new Random();
-            int res=random.Next(0,4);
+            int res=random.Next(0,8);
             return list[res];
         }
 
-        public string chooseLocation(int index) {
+        public string chooseLocation(int index,string initialLocation) {
             
             string[] locations = { "forest", "cave", "town", "castle", "village" };
-            
+            initialLocation=locations[index-1];
             return locations[index-1];
         }
         public int validInput(bool test_choice, int choice){
@@ -60,12 +54,13 @@ namespace Adventure_Quest_RPG.GameFlow
         }
 
         public string locationDiscevery() {
+            string initialLocation = "forest";
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("choose a location:\n [1] forest \n [2] cave \n [3] town\n [4] castle\n [5] village");
             string input=Console.ReadLine();
             bool inputBool= Int32.TryParse(input, out int choice1);
             int valid=validInput(inputBool, choice1);
-            string location= chooseLocation(valid);
+            string location= chooseLocation(valid,initialLocation);
             return location;
         }
         public void round(Player player) {
@@ -129,6 +124,7 @@ namespace Adventure_Quest_RPG.GameFlow
             else return true;
         }
         public void gameFlow() {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to our game!\nEnter your name:");
             string name = Console.ReadLine();
             bool validName = nameValidation(name);
@@ -144,7 +140,7 @@ namespace Adventure_Quest_RPG.GameFlow
                 int input = action();
                 switchloop(input, player);
             }
-            Console.WriteLine("\nGame Over!\nGood luck next time.");
+            Console.WriteLine("\nGame Over!\nHard luck next time.");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nDo you want to play again? y / n");
             string replay = Console.ReadLine();
@@ -158,8 +154,7 @@ namespace Adventure_Quest_RPG.GameFlow
             }
 
         }
-
-        }
+    }
      
 
     }

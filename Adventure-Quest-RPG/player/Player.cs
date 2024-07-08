@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Adventure_Quest_RPG.GameFlow;
 using Adventure_Quest_RPG.Inventory_System;
+using static Adventure_Quest_RPG.GameFlow.Adventure;
 
 namespace Adventure_Quest_RPG.player
 {

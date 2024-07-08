@@ -8,7 +8,7 @@ namespace Adventure_Quest_RPG.monsters
 {
     internal class Werewolf : Monster
     {
-        public Werewolf(string Name="Werewolf", int Health=70, int AttackPower=70, int Defense=80) : base(Name, Health, AttackPower, Defense)
+        public Werewolf(string Name="Werewolf", int Health=60, int AttackPower=70, int Defense=50) : base(Name, Health, AttackPower, Defense)
         {
             this.Name = Name;
             this.Health = Health;

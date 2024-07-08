@@ -1,18 +1,20 @@
 using Adventure_Quest_RPG.GameFlow;
 using Adventure_Quest_RPG.monsters;
-using Adventure_Quest_RPG.Player;
+using Adventure_Quest_RPG.player;
+using static Adventure_Quest_RPG.GameFlow.Adventure;
 
 namespace AdventureQuestTests
 {
     public class UnitTest1
-    {
+    { 
+        BattleSystem battleSystem = new BattleSystem();
         [Fact]
         public void PlayerAttackReducesEnemyHealth()
         {
             Player player = new Player("Muath Mhawich", 30, 800, 10);
             Monster dragon = new Dragon("dragon", 30, 600, 10);
-
-            BattleSystem.Attack(player, dragon);
+          
+            battleSystem.Attack(player, dragon);
 
             Assert.True(dragon.Health < 600);
         }
@@ -23,7 +25,7 @@ namespace AdventureQuestTests
             Player player = new Player("Nour Misk", 20, 800, 10);
             Monster dragon = new Dragon("dragon", 30, 600, 10);
 
-            dragon.Attack(player);
+            battleSystem.Attack(dragon,player);
 
             Assert.True(player.Health < 800);
         }
@@ -34,9 +36,45 @@ namespace AdventureQuestTests
             Player player = new Player("Muath Mhawich", 20, 800, 30);
             Monster dragon = new Dragon("dragon", 30, 600, 10);
 
-            BattleSystem.StartBattle(player, dragon);
+            battleSystem.StartBattle(player, dragon);
 
             Assert.True(player.Health > 0 || dragon.Health > 0);
         }
+
+        [Fact]
+        public void Changing_locations() { 
+         Adventure adventure = new Adventure();
+            string initialLocation = "cave";
+            string expected_output = "castle";
+            int index = 4;
+            string output=adventure.chooseLocation(index, initialLocation);
+            Assert.Equal(expected_output, output);
+        }
+
+
+        [Fact]
+        public void TestEncounterBossMonster()
+        {
+            Adventure adventure = new Adventure();
+            adventure = new Adventure();
+            bool bossMonsterEncountered = false;
+
+            //Simulate encounters until the boss monster is found
+            for (int i = 0; i < 100; i++)
+            {
+                Monster monster = adventure.chooseMonster();
+
+                if (monster is BossMonster)
+                {
+                    bossMonsterEncountered = true;
+                    break;
+                }
+            }
+
+            // Check if the boss monster was encountered within 100 attempts
+            Assert.True(bossMonsterEncountered);
+        }
+
+
     }
 }
